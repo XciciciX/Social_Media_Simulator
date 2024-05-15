@@ -1,0 +1,25 @@
+p{
+    color: black;
+}
+
+/* upper lefy corner */
+.upper-left-corner{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 15px;
+    background: #fff;
+    margin: 0%;
+}
+
+/* upper right corner */
+.upper-right-corner{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 150px;
+    height: 15px;
+    background: #fff;
+    margin: 0%;
+}

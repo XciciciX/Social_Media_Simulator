@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Insta485</title>
+</head>
+<body>
+    <p class="upper-left-corner">
+        <a href="{{url_for('show_index')}}">
+            Insta485
+        </a>
+    </p>
+    <p class="upper-right-corner">
+        <a href="{{url_for('show_explore')}}">
+            Explore
+        </a>
+        &nbsp;|&nbsp; 
+        <a href="{{url_for('show_user', user_url_slug = logname)}}">
+            {{ logname }}
+        </a>
+    </p>
+    <div id="reactEntry">
+        Loading ...
+    </div>
+    <!-- Load JavaScript -->
+    <script src="{{ url_for('static', filename='js/bundle.js') }}"></script>
+</body>
+</html>

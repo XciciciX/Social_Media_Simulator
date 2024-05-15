@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+        <title>insta485</title>
+    </head>
+    <body>
+        <p class="upper-left-corner">
+            <a href="{{url_for('show_index')}}">
+                Insta485
+            </a>
+        </p>
+        <p class="upper-right-corner">
+            <a href="{{url_for('show_explore')}}">
+                Explore
+            </a>
+            &nbsp;|&nbsp; 
+            <a href="{{url_for('show_user', user_url_slug = logname)}}">
+                {{ logname }}
+            </a>
+        </p>
+        <br><br>
+        <h1>
+            Discover People
+        </h1>
+        <ul>
+        {% for f in not_following %}
+        <li>
+            <img src="{{ url_for('show_image', filename=f.filename) }}" width="20" height="20" alt="{{ f.username }}">
+            &nbsp;
+            <a href="{{url_for('show_user', user_url_slug = f.username)}}">
+                {{ f.username }}
+            </a>
+            <form action="{{url_for('redirect_following')}}?target={{url_for('show_explore')}}" method="post" enctype="multipart/form-data">
+                <input type="submit" name="follow" value="follow"/>
+                <input type="hidden" name="username" value="{{ f.username }}"/>
+                <input type="hidden" name="operation" value="follow"/>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    </body>
+</html>

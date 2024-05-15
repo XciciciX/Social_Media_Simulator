@@ -1,0 +1,14 @@
+#!/bin/bash
+# insta485test
+
+# Stop on errors
+# See https://vaneyckt.io/posts/safer_bash_scripts_with_set_euxo_pipefail/
+set -Eeuo pipefail
+set -x
+
+pycodestyle insta485
+pydocstyle insta485
+pylint insta485
+npx eslint --ext jsx insta485/js/
+npx prettier --check insta485/js
+pytest -v tests

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>insta485</title>
+</head>
+
+<body>
+    <p class = "upper-left-corner">
+        <a href="{{url_for('show_index')}}">Insta485</a>
+    </p>
+    <p class = "upper-right-corner">
+        <a href="{{url_for('show_explore')}}">explore</a>
+        &nbsp;|&nbsp; 
+        <a href="{{url_for('show_user', user_url_slug = dictionary1.logname)}}">{{dictionary1.logname}}</a>
+    </p>
+    <div class = "post-container">
+        Following
+        {% for following in dictionary1.followings %}
+            {% for user in dictionary1.users %}
+                {% if user.username == following.username2 %}
+                    <img style="width: 200px" src="{{url_for('show_image', filename = user.filename)}}" alt="Post Image">
+                    <a href="{{url_for('show_user', user_url_slug = user.username)}}">{{user.username}}</a>
+
+                    
+                    {% if dictionary1.logname != user.username and dictionary1.logname != dictionary1.user %}
+                        {% if dictionary2[user.username]  %} 
+                            
+                            following
+                            <form action="{{ url_for('redirect_following')}}?target={{url_for('show_following', user_url_slug = dictionary1.username)}}" method="post" enctype="multipart/form-data">
+                                <input type="submit" name="unfollow" value="unfollow"/>
+                                <input type="hidden" name="username" value="{{user.username}}"/>
+                                <input type="hidden" name="operation" value="unfollow"/>
+                            </form>
+                        {% else %} 
+
+                            not following 
+                            <form action="{{ url_for('redirect_following')}}?target={{url_for('show_following', user_url_slug = dictionary1.username)}}" method="post" enctype="multipart/form-data">
+                                <input type="submit" name="follow" value="follow"/>
+                                <input type="hidden" name="username" value="{{user.username}}"/>
+                                <input type="hidden" name="operation" value="follow"/>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}   
+        {% endfor %}            
+    </div>
+    
+</body>
+</html>

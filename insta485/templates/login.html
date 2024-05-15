@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/style.css')}}">
+    <title>Insta485</title>
+</head>
+
+<body>
+    <p class="upper-left-corner">
+        <a href="{{url_for('show_index')}}">
+            Insta485
+        </a>
+    </p>
+    <p class="upper-right-corner">
+        <a href="{{url_for('show_login')}}">
+            login
+        </a>
+    </p>
+    <br>
+    <!-- DO NOT CHANGE THIS (aside from styling) -->
+    <form action="{{url_for('redirect_accounts')}}?target={{url_for('show_index')}}" method="post" enctype="multipart/form-data">
+        <input type="text" name="username" required/>
+        <input type="password" name="password" required/>
+        <input type="submit" value="login"/>
+        <input type="hidden" name="operation" value="login"/>
+    </form>
+  
+
+    <p>
+        {% if error != None %}
+            {{ error }}
+        {% endif %}
+    </p>
+
+    <p>Don't have an account? <a href="{{url_for('create')}}">Create one</a>.</p>
+
+</body>
+</html>

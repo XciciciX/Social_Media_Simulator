@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Insta485</title>
+    </head>
+
+    <body>
+        <h1>
+            <a href="{{url_for('show_index')}}" target="_self">LOGO</a> | Insta485
+        </h1>
+
+        <h2 style="text-align:right;"><a href="{{url_for('show_explore')}}"  target="_self">explore</a> 
+            <a href="{{url_for('show_user', user_url_slug = logname)}}"  target="_self">{{ logname }}</a></h2>
+
+        <h1>{{ logname }}</h1>
+
+        <form action="{{url_for('redirect_accounts')}}?target={{url_for('create')}}" method="post" enctype="multipart/form-data">
+            <input type="submit" name="delete" value="confirm delete account"/>
+            <input type="hidden" name="operation" value="delete"/>
+        </form>
+        
+    </body>
+</html>
